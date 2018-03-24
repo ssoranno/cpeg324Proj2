@@ -29,34 +29,27 @@ begin
 		port map(a=>a,b=>b,c=>c,d=>d,sel=>sel,o=>o);
 	
 	process begin
-		
+		wait for 10 ns;
 		a<="00";
 		b<="01";
 		c<="10";
 		d<="11";
+		
 		sel<="00";
-		wait for 1 ns;
+		wait for 10 ns;
+		assert(o = "00") report "Test Failed" severity error;
 		
-		a<="00";
-		b<="01";
-		c<="10";
-		d<="11";
 		sel<="01";
-		wait for 1 ns;
+		wait for 10 ns;
+		assert(o = "01") report "Test Failed" severity error;
 		
-		a<="00";
-		b<="01";
-		c<="10";
-		d<="11";
 		sel<="10";
-		wait for 1 ns;
+		wait for 10 ns;
+		assert(o = "10") report "Test Failed" severity error;
 		
-		a<="00";
-		b<="01";
-		c<="10";
-		d<="11";
 		sel<="11";
-		wait for 1 ns;
+		wait for 10 ns;
+		assert(o = "11") report "Test Failed" severity error;
 		
 		assert false report "Reached end of test";
 		wait;
