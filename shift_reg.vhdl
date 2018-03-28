@@ -51,7 +51,6 @@ begin
 		end if;
 	end if;
 end process reg_process;
-O<=temp;
 --sel_process:process
 --begin
 --if(sel = "00") then
