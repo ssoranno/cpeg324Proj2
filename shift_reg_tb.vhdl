@@ -22,12 +22,14 @@ signal i, o : std_logic_vector(3 downto 0);
 signal i_shift_in, clk, enable : std_logic;
 signal sel : std_logic_vector(1 downto 0);
 
+-- set constant clock period to 10 ns
 constant clk_period : time := 10 ns;
 
 begin
 --  Component instantiation.
 shift_reg_0: shift_reg port map (I => i, I_SHIFT_IN => i_shift_in, sel => sel, clock => clk, enable => enable, O => o);
 
+-- Clock process
 clk_process : process
 begin
 	for i in 1 to 30 loop
@@ -43,55 +45,113 @@ end process;
 process
 begin
 	
+	-- Test part 1: i = 0001
+	-- i_shift_in = 1 and enable= 1
 	i <= "0001";
 	i_shift_in <= '1';
-	sel <= "11";
 	enable <= '1';
-	wait for 10 ns;
 	
+	-- Test if load works correctly for i = 0001
+	sel <= "11";
+	wait for 10 ns;
+	assert(o = "0001") report "Test Failed" severity error;
+	
+	-- Test if shift left changes 0001 to 0011
 	sel <= "01";
 	wait for 10 ns;
-	sel <= "00";
+	assert(o = "0011") report "Test Failed" severity error;
 	
+	-- Test if shift right changes 0001 to 1000
 	sel<= "10";
 	wait for 10 ns;
-	sel <= "00";
+	assert(o = "1000") report "Test Failed" severity error;
 	
-	enable <='0';
+	-- Test if hold works correctly
+	sel<= "00";
 	wait for 10 ns;
+	assert(o = "1000") report "Test Failed" severity error;
+	
+	-- Test if enable = 0 prevents 0001 from being shifted to 1000
+	-- this test should cause 0001 to remain unchanged.
+	sel<="11";
+	wait for 10 ns;
+	enable <='0';
+	wait for 5 ns;
+	sel<="10";
+	wait for 5 ns;
+	assert(o = "0001") report "Test Failed" severity error;
+	enable<='1';
+	
+	-- Test if i_shift_in works if it is 0 instead of 1
+	i_shift_in <= '0';
+	sel<="11";
+	wait for 10 ns;
+	assert(o = "0001") report "Test Failed" severity error;
+	
+	-- Test if shift left changes 0001 to 0010
+	sel<="01";
+	wait for 10 ns;
+	assert(o = "0010") report "Test Failed" severity error;
+	
+	-- Test if shift right changes 0001 to 0000
+	sel<="10";
+	wait for 10 ns;
+	assert(o = "0000") report "Test Failed" severity error;
+----------------------------------------------------------------------	
+	-- Test part 2: i = 1010
+	-- i_shift_in = 1 and enable= 1
+	i <= "1010";
+	i_shift_in <= '1';
+	enable <= '1';
+	
+	-- Test if load works correctly for i = 0001
+	sel <= "11";
+	wait for 10 ns;
+	assert(o = "1010") report "Test Failed" severity error;
+	
+	-- Test if shift left changes 1010 to 0101
+	sel <= "01";
+	wait for 10 ns;
+	assert(o = "0101") report "Test Failed" severity error;
+	
+	-- Test if shift right changes 1010 to 1101
+	sel<= "10";
+	wait for 10 ns;
+	assert(o = "1101") report "Test Failed" severity error;
+	
+	-- Test if hold works correctly
+	sel<= "00";
+	wait for 10 ns;
+	assert(o = "1101") report "Test Failed" severity error;
+	
+	-- Test if enable = 0 prevents 1010 from being shifted to 1101
+	-- this test should cause 1010 to remain unchanged.
+	sel<="11";
+	wait for 10 ns;
+	enable <='0';
+	wait for 5 ns;
+	sel<="10";
+	wait for 5 ns;
+	assert(o = "1010") report "Test Failed" severity error;
+	enable <= '1';
+	-- Test if i_shift_in works if it is 0 instead of 1
+	i_shift_in <= '0';
+	sel<="11";
+	wait for 10 ns;
+	assert(o = "1010") report "Test Failed" severity error;
+	
+	-- Test if shift left changes 1010 to 0100
+	sel<="01";
+	wait for 10 ns;
+	assert(o = "0100") report "Test Failed" severity error;
+	
+	-- Test if shift right changes 1010 to 0101
+	sel<="10";
+	wait for 10 ns;
+	assert(o = "0101") report "Test Failed" severity error;
+	
 	assert false report "end of test" severity note;
 	
-	
--- type pattern_type is record
--- --  The inputs of the shift_reg.
--- i: std_logic_vector (3 downto 0);
--- i_shift_in, clk, enable: std_logic;
--- sel: std_logic_vector(1 downto 0);
--- --  The expected outputs of the shift_reg.
--- o: std_logic_vector (3 downto 0);
--- end record;
--- --  The patterns to apply.
--- type pattern_array is array (natural range <>) of pattern_type;
--- constant patterns : pattern_array :=
--- (("0001", '1', '1', '0', "11", "0000"),
--- ("0001", '0', '1', '0', "00", "0001"));
--- begin
--- --  Check each pattern.
--- for n in patterns'range loop
--- --  Set the inputs.
--- i <= patterns(n).i;
--- i_shift_in <= patterns(n).i_shift_in;
--- sel <= patterns(n).sel;
--- clk <= patterns(n).clk;
--- enable <= patterns(n).enable;
--- --  Wait for the results.
--- wait for 1 ns;
--- --  Check the outputs.
--- assert o = patterns(n).o
--- report "bad output value" severity error;
--- end loop;
--- assert false report "end of test" severity note;
--- --  Wait forever; this will finish the simulation.
 wait;
 end process;
 end behav;

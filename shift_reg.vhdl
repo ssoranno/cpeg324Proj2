@@ -1,8 +1,5 @@
 library ieee;
 use ieee.std_logic_1164.all;
--- library STD;
--- use STD.textio.all;
--- use IEEE.std_logic_textio.all;
 
 entity shift_reg is
 port(	I:	in std_logic_vector (3 downto 0);
