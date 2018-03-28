@@ -1,5 +1,5 @@
 $date
-  Wed Mar 28 10:53:03 2018
+  Wed Mar 28 11:21:43 2018
 $end
 $version
   GHDL v0
@@ -20,11 +20,6 @@ $var reg 2 ) sel[1:0] $end
 $var reg 1 * clock $end
 $var reg 1 + enable $end
 $var reg 4 , o[3:0] $end
-$var reg 1 - hold $end
-$var reg 1 . s1 $end
-$var reg 1 / sr $end
-$var reg 1 0 load $end
-$var reg 4 1 temp[3:0] $end
 $upscope $end
 $enddefinitions $end
 #0
@@ -40,25 +35,21 @@ b11 )
 0*
 1+
 bUUUU ,
-U-
-U.
-U/
-U0
-bUUUU 1
 #5000000
+b0001 "
 1$
 1*
-bUUUU ,
+b0001 ,
 #10000000
 0$
 b01 &
 b01 )
 0*
 #15000000
+b0011 "
 1$
 1*
-bUUUU ,
-b0011 1
+b0011 ,
 #20000000
 0$
 b00 &

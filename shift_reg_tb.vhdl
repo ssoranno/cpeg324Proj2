@@ -49,13 +49,16 @@ begin
 	enable <= '1';
 	wait for 10 ns;
 	
-	i <= "0001";
-	i_shift_in <= '1';
 	sel <= "01";
-	enable <= '1';
 	wait for 10 ns;
 	sel <= "00";
 	
+	sel<= "10";
+	wait for 10 ns;
+	sel <= "00";
+	
+	enable <='0';
+	wait for 10 ns;
 	assert false report "end of test" severity note;
 	
 	
