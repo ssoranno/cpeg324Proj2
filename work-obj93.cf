@@ -1,7 +1,13 @@
 v 4
-file . "P1_tb.vhdl" "0a87389e779afce6446270a7d2b11a2ba6af5e56" "20180324162259.017":
-  entity p1_tb at 1( 0) + 0 on 13;
-  architecture test of p1_tb at 7( 78) + 0 on 14;
+file . "shift_reg.vhdl" "2c7c63cf5434d35f07c5c91e43797985ffdab430" "20180328145253.672":
+  entity shift_reg at 1( 0) + 0 on 109;
+  architecture behav of shift_reg at 17( 506) + 0 on 110;
 file . "P1.vhdl" "edfcb928e278da71051b4535b64a844a7ed2f899" "20180324162211.085":
   entity generic_mux at 1( 0) + 0 on 11;
   architecture m of generic_mux at 15( 400) + 0 on 12;
+file . "P1_tb.vhdl" "0a87389e779afce6446270a7d2b11a2ba6af5e56" "20180324162259.017":
+  entity p1_tb at 1( 0) + 0 on 13;
+  architecture test of p1_tb at 7( 78) + 0 on 14;
+file . "shift_reg_tb.vhdl" "9d79e1b2d3e74bf32b227c61e2ef5c99643d75eb" "20180328145254.821":
+  entity shift_reg_tb at 1( 0) + 0 on 111;
+  architecture behav of shift_reg_tb at 8( 116) + 0 on 112;

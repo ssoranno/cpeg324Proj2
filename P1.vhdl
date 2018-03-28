@@ -14,8 +14,8 @@ end generic_mux;
 
 architecture M of generic_mux is
 begin
-	o <= a when sel="00" else
-	b when sel="01" else
-	c when sel="10" else
-	d when sel="11";
+	o <= (a after 5 ns) when sel="00" else
+	(b after 5 ns) when sel="01" else
+	(c after 5 ns) when sel="10" else
+	(d after 5 ns) when sel="11";
 end M;
