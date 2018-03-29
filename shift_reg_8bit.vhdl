@@ -28,11 +28,11 @@ signal ISR2: std_logic;
 
 begin
 
-ISR1<= I_SHIFT_IN when sel = "01" else
-	I(4) when sel = "10";
+ISR1<= I_SHIFT_IN when sel(0) = '1' else
+	I(4) when sel(0) = '0';
 
-ISR2<= I(3) when sel = "01" else
-	I_SHIFT_IN when sel = "10";
+ISR2<= I(3) when sel(0) = '1' else
+	I_SHIFT_IN when sel(0) = '0';
 
 
 SR1: shift_reg port map(I=>I(3 downto 0), I_SHIFT_IN=>ISR1, sel=>sel, enable=>enable, clock=>clock, O=>O(3 downto 0));

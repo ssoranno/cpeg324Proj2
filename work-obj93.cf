@@ -1,10 +1,19 @@
 v 4
-file . "shift_reg_8bit_tb.vhdl" "0c59c38ab71df025c8511893b5df8e312fe3dc4e" "20180328192923.109":
-  entity shift_reg_8bit_tb at 1( 0) + 0 on 41;
-  architecture behav of shift_reg_8bit_tb at 8( 133) + 0 on 42;
-file . "shift_reg_8bit.vhdl" "e71cb089747763a25c552cba7c50461c6bc32d4f" "20180328192919.486":
-  entity shift_reg_8bit at 1( 0) + 0 on 39;
-  architecture behav of shift_reg_8bit at 14( 456) + 0 on 40;
+file . "add_sub_tb.vhdl" "49f42ba84d424c2417c8f72f08ec4a67237e808e" "20180329191021.067":
+  entity add_sub_tb at 1( 0) + 0 on 75;
+  architecture test of add_sub_tb at 8( 112) + 0 on 76;
+file . "full_adder.vhdl" "600b702aefcf30bc6a110e2258d3df4048412db4" "20180329191018.785":
+  entity full_adder at 1( 0) + 0 on 71;
+  architecture behav of full_adder at 14( 248) + 0 on 72;
 file . "shift_reg.vhdl" "6854ad8670c5c45f12f9ec4121fcacba57b43ce4" "20180328192045.390":
   entity shift_reg at 1( 0) + 0 on 31;
   architecture behav of shift_reg at 14( 433) + 0 on 32;
+file . "shift_reg_8bit.vhdl" "1537a82334e116d2035f822087c866185e1798f4" "20180329150853.861":
+  entity shift_reg_8bit at 1( 0) + 0 on 43;
+  architecture behav of shift_reg_8bit at 14( 456) + 0 on 44;
+file . "shift_reg_8bit_tb.vhdl" "74c0da093cb2fc975cd757e98e9261c796dfcde6" "20180329150858.400":
+  entity shift_reg_8bit_tb at 1( 0) + 0 on 45;
+  architecture behav of shift_reg_8bit_tb at 8( 133) + 0 on 46;
+file . "add_sub.vhdl" "5c06a35b306c5cb7bb829d23ef6b425488745df0" "20180329191019.715":
+  entity add_sub at 1( 0) + 0 on 73;
+  architecture behav of add_sub at 13( 253) + 0 on 74;
