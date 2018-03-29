@@ -1,3 +1,6 @@
+-- Steven Soranno and Evan Deangelis
+-- Problem 3
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -25,6 +28,7 @@ architecture behav of add_sub is
 	signal c : std_logic_vector(3 downto 0);
 
 begin 
+-- Port maps for the 4 full adders
 FA1: full_adder 
 	port map(i1 => A(0),
 				 i2 => B(0) ,

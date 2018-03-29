@@ -1,3 +1,6 @@
+-- Steven Soranno and Evan Deangelis
+-- Problem 2 part a
+
 library ieee;
 use ieee.std_logic_1164.all;
 
