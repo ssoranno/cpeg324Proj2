@@ -26,6 +26,7 @@ architecture behav of add_sub is
 	end component;
 
 	signal c : std_logic_vector(3 downto 0);
+	signal temp : std_logic;
 
 begin 
 -- Port maps for the 4 full adders
@@ -57,11 +58,14 @@ FA3: full_adder
 		
 	);
 
+temp <= '0' when ((A(3)= '0') AND (B(3)= '0') AND (mode = '0')) else
+	c(2) when NOT ((A(3)= '0') AND (B(3)='0') AND (mode = '0'));
+
 FA4: full_adder 
 	port map(i1 => A(3),
 				 i2 => B(3),
 				 m=> mode,
-				 Cin => c(2),
+				 Cin => temp,
 				 sum => S(3),
 				 Cout => c(3)
 		

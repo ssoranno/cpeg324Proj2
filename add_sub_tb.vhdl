@@ -32,6 +32,8 @@ begin
 	);
 
 	process begin
+	
+		-- Test 1 + 1 = 2
 		wait for 10 ns;
 		a<="0001";
 		b<="0001";
@@ -39,35 +41,51 @@ begin
 		wait for 10 ns;
 		assert(s = "0010") report "Test Failed 1" severity error;
 
-		--wait for 10 ns;
+		-- Test -7 + 1 = -6
 		a<="1001";
 		b<="0001";
 		mode<='0';
 		wait for 10 ns;
 		assert(s = "1010") report "Test Failed 2" severity error;
 
-		--wait for 10 ns;
+		-- Test 1 - 1 = 0
 		a<="0001";
 		b<="0001";
 		mode<='1';
 		wait for 10 ns;
 		assert(s = "0000") report "Test Failed 3" severity error;
 		
-		--wait for 10 ns;
+		-- Test 7 + 2 = 9 (overflow)
 		a<="0111";
 		b<="0010";
 		mode<='0';
 		wait for 10 ns;
-		assert(s = "0101") report "Test Failed 4" severity error;
+		assert(s = "0001") report "Test Failed 4" severity error;
 
-		--wait for 10 ns;
+		-- Test -7 - 2 = -9 (underflow)
 		a<="1001";
-		b<="0001";
+		b<="0010";
 		mode<='1';
 		wait for 10 ns;
-		assert(s = "1000") report "Test Failed 5" severity error;
-
+		assert(s = "0111") report "Test Failed 5" severity error;
+		
+		-- Test -8 + -1 = -9 (underflow)
+		a<="1000";
+		b<="1111";
+		mode<='0';
 		wait for 10 ns;
+		assert(s = "0111") report "Test Failed 6" severity error;
+		
+		-- Test 3 - 4 = -1
+		a<="0011";
+		b<="0100";
+		mode<='1';
+		wait for 10 ns;
+		assert(s = "1111") report "Test Failed 3" severity error;
+		
+		wait for 10 ns;
+		
+		assert false report "end of test" severity note;
 
 	wait;
 	end process;
